@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -12,8 +14,8 @@ import Market from '../artifacts/contracts/Market.sol/NFTMarket.json'
 
 let rpcEndpoint = null
 
-if (process.env.NEXT_PUBLIC_WORKSPACE_URL) {
-  rpcEndpoint = process.env.NEXT_PUBLIC_WORKSPACE_URL
+if (process.env.NEXT_PUBLIC_WORKSPACE_URL_LOCALHOST) {
+  rpcEndpoint = process.env.NEXT_PUBLIC_WORKSPACE_URL_LOCALHOST
 }
 
 export default function Home() {
@@ -63,21 +65,32 @@ export default function Home() {
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
     <div className="flex justify-center">
-      <div className="px-4" style={{ maxWidth: '1600px' }}>
+      <div className="px-4" style={{ width: '1600px' }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
-                <div className="p-4">
-                  <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
-                  <div style={{ height: '70px', overflow: 'hidden' }}>
-                    <p className="text-gray-400">{nft.description}</p>
+                <div className='flex justify-center'>
+                  <img src={nft.image} />
+                </div>
+                <div className="p-4 m-2">
+                  <p style={{ height: '48px', textAlign: 'center' }} className="text-2xl font-semibold">{nft.name}</p>
+                  <div style={{ height: '40px', overflow: 'hidden' }}>
+                    <p className="text-gray-400" style={{textAlign: 'center'}}>{nft.description}</p>
                   </div>
                 </div>
-                <div className="p-4 bg-black">
-                  <p className="text-2xl mb-4 font-bold text-white">{nft.price} ETH</p>
-                  <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                <div className="p-2" style={{backgroundColor:'#0073B0'}}>
+                  <div className='flex justify-center'>
+                    <p className="text-2xl mb-4 font-bold text-white"style={{textAlign: 'center'}}>{nft.price} ETH</p>
+                    <img
+                      src="https://seeklogo.com/images/E/ethereum-logo-EC6CDBA45B-seeklogo.com.png"
+                      style={{marginLeft: 10, width:30,height:30}}
+                    />
+                   </div>
+                  <div className='flex justify-center'>
+                    <button className="w-full m-1 bg-red-400 text-white font-bold py-2 px-12 rounded">Search</button>
+                    <button className="w-full m-1 bg-green-400 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                  </div>
                 </div>
               </div>
             ))

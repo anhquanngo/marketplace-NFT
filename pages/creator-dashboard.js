@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -18,10 +20,7 @@ export default function CreatorDashboard() {
     loadNFTs()
   }, [])
   async function loadNFTs() {
-    const web3Modal = new Web3Modal({
-      network: "mainnet",
-      cacheProvider: true,
-    })
+    const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
     const signer = provider.getSigner()
@@ -59,9 +58,11 @@ export default function CreatorDashboard() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} className="rounded" />
-                <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
+                <div className='flex justify-center'>
+                  <img src={nft.image} className="rounded" />
+                </div>
+                <div className="p-4" style={{backgroundColor:'#0073B0'}}>
+                  <p className="text-2xl font-bold text-white" style={{textAlign: 'center'}}>Price - {nft.price} ETH</p>
                 </div>
               </div>
             ))
@@ -77,9 +78,11 @@ export default function CreatorDashboard() {
                 {
                   sold.map((nft, i) => (
                     <div key={i} className="border shadow rounded-xl overflow-hidden">
-                      <img src={nft.image} className="rounded" />
-                      <div className="p-4 bg-black">
-                        <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
+                      <div className='flex justify-center'>
+                        <img src={nft.image} className="rounded" />
+                      </div>
+                      <div className="p-4" style={{backgroundColor:'#0073B0'}}>
+                        <p className="text-2xl font-bold text-white" style={{textAlign: 'center'}}>Price - {nft.price} ETH</p>
                       </div>
                     </div>
                   ))

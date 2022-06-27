@@ -9,6 +9,11 @@ module.exports = {
     hardhat: {
       chainId: 1337
     },
+    mumbai: {
+      // Alchemy
+      url: "https://polygon-mumbai.g.alchemy.com/v2/JDtg4FWn5DVDHXpMTTtIuay0xPmctavh",
+      accounts: ['1802ca85a6dbad889b651414638a6c3f64c2e26c018a471c301e89dfe3c9ba21']
+    },
     /*
     mumbai: {
       // Infura
@@ -16,7 +21,7 @@ module.exports = {
       url: "https://rpc-mumbai.matic.today",
       accounts: [privateKey]
     },
-    matic: {
+    mainnet: {
       // Infura
       // url: `https://polygon-mainnet.infura.io/v3/${infuraId}`,
       url: "https://rpc-mainnet.maticvigil.com",
